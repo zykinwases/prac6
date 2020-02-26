@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS professor (
 	pswd_hash CHAR(32) NOT NULL UNIQUE, --modified md5
 	last_name TEXT NOT NULL,
 	first_name TEXT,
-	--company_id INTEGER REFERENCES company (company_id)
+	company_id INTEGER REFERENCES company (company_id)
 );
 
 CREATE TABLE IF NOT EXISTS course (
@@ -18,16 +18,9 @@ CREATE TABLE IF NOT EXISTS course (
 	course_name TEXT,
 	duration INTERVAL NOT NULL, --длительность курса
 	intense INTERVAL NOT NULL, --кол-во часов за занятие
-	--professor_id INTEGER REFERENCES professor (professor_id),
-		company_id INTEGER REFERENCES company (company_id), 
+	professor_id INTEGER REFERENCES professor (professor_id), 
 	relevance BOOLEAN DEFAULT TRUE --if course is finished it is not deleted to save (and show) history
 );
-
-	CREATE TABLE IF NOT EXISTS cours_prof (
-		course_id INTEGER,
-		professor_id INTEGER,
-		PRIMARY KEY(course_id, professor_id)
-	);
 
 CREATE TABLE IF NOT EXISTS lesson (
 	lesson_id SERIAL PRIMARY KEY,
