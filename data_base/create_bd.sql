@@ -1,1 +1,0 @@
-CREATE DATABASE trading_center WITH ENCODING 'UTF-8';
