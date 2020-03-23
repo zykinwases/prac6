@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<project default="all" basedir="." name="training_center">
+
+	<property file="axis_bujava.properties"/>
+
+	<target name="initdb">
+	    <ant antfile="${db.dir}/build.xml"/>
+	</target>
+
+	<target name = "build">
+		<ant antfile = "${src.dir}/build.xml"/>
+	</target>
+
+	<target name = "runtests" depends = "initdb, build">
+		<ant antfile = "${test.dir}/build.xml"/>
+	</target>
+
+	<target name = "all" depends = "initdb, build, runtests"/>
+  
+</project>

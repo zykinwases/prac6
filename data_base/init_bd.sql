@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS course (
 
 CREATE TABLE IF NOT EXISTS lesson (
 	lesson_id SERIAL PRIMARY KEY,
-	course_id INTEGER NOT NULL,
+	course_id INTEGER REFERENCES course (course_id),
 	"time" TIMESTAMP NOT NULL	
 );
 
@@ -41,11 +41,12 @@ CREATE TABLE IF NOT EXISTS student (
 CREATE TABLE IF NOT EXISTS std_less (
 	student_id INTEGER REFERENCES student (student_id),
 	course_id INTEGER REFERENCES course (course_id),
-	relevance BOOLEAN DEFAULT TRUE --if student leaves course the system do not delete this information to save (and show) hystory
+	relevance BOOLEAN DEFAULT TRUE, --if student leaves course the system do not delete this information to save (and show) hystory
 	PRIMARY KEY(student_id, course_id)
 );
 
 CREATE TABLE IF NOT EXISTS admin_acc (
+	admin_id SERIAL PRIMARY KEY,
 	login TEXT NOT NULL UNIQUE,
 	pswd_hash CHAR(32) NOT NULL UNIQUE, --modified md5
 	last_name TEXT NOT NULL,

@@ -36,4 +36,4 @@ INSERT INTO std_less VALUES (5, 3);
 INSERT INTO std_less VALUES (4, 2);
 
 --password for admin - admin
-INSERT INTO admin_acc VALUES ('admin', 'f189656226a53e50eae44f80d4befb6e', 'Araratova', 'Diana');
+INSERT INTO admin_acc VALUES (DEFAULT, 'admin', 'f189656226a53e50eae44f80d4befb6e', 'Araratova', 'Diana');
