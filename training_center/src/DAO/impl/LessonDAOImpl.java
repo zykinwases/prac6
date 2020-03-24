@@ -1,20 +1,17 @@
 package DAO.impl;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import DAO.LessonDAO;
 import database.Course;
 import database.Lesson;
-import database.Std_less;
 import database.Student;
 import training_center.HibernateUtil;
 
@@ -84,6 +81,7 @@ public class LessonDAOImpl implements LessonDAO {
 		return lesson;
 	}
 
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	public Collection<Lesson> getAllLessons() throws SQLException {
 		Session session = null;
 		List<Lesson> lessons = new ArrayList<Lesson>();
@@ -100,37 +98,45 @@ public class LessonDAOImpl implements LessonDAO {
 		return lessons;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Collection<Lesson> getNextLessonsFor(Long time, Student student) throws SQLException {
 		Session session = null;
 		List<Lesson> lessons = new ArrayList<Lesson>();
-		String period;
+		Long period;
 		try {
 			if (time == 0) {
-				period = "1 day";
+				period = (long)1;
 			} else if (time == 1) {
-				period = "2 days";
+				period = (long)2;
 			} else if (time == 2) {
-				period = "1 week";
+				period = (long)7;
 			} else {
-				period = "1 month";
+				period = (long)30;
 			}
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			Query query = null;
-			List<Std_less> t1 = new ArrayList<Std_less>();
+			List<Course> t1 = new ArrayList<Course>();
 			t1.addAll(student.getCourses());
 			Iterator iter = t1.iterator();
 			while (iter.hasNext()) {
-				Std_less s = (Std_less) iter.next();
-				query = session.createQuery("from lesson where course_id = :id " +
-						" and time >= CURRENT_TIME and time <= CURRENT_DATE + :t");
-				query.setParameter("id", s.getCourse_id());
-				query.setParameter("t", period);
-				lessons.addAll((List<Lesson>) query.list());
+				Course s = (Course) iter.next();
+				System.out.println(s.getId());
+				List<Lesson> l = new ArrayList<Lesson>();
+				l.addAll(s.getLessons());
+				Iterator iter2 = l.iterator();
+				Timestamp today = new Timestamp(System.currentTimeMillis());
+				Timestamp per = new Timestamp(System.currentTimeMillis() + period * 86400000);
+				while (iter2.hasNext()) {
+					Lesson les = (Lesson) iter2.next();
+					System.out.println(les.getTime());
+					if ((les.getTime().compareTo(today) >= 0) & (les.getTime().compareTo(per) < 0)) {
+						lessons.add(les);
+					}
+				}
 			}
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Lesson by company fault", JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Lesson for student fault", JOptionPane.OK_OPTION);
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
@@ -145,10 +151,7 @@ public class LessonDAOImpl implements LessonDAO {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			Query query = null;
-			query = session.createQuery("select lesson.* from lesson inner join course using (course_id) where course_id =: id");
-			query.setParameter("id", course.getId());
-			lessons = (List<Lesson>) query.list();
+			lessons.addAll(course.getLessons());
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Lesson by course fault", JOptionPane.OK_OPTION);

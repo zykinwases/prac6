@@ -1,10 +1,9 @@
 package database;
 
 import java.io.Serializable;
-import java.util.Objects;
-
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="admin_acc")
 public class Admin implements Serializable{
@@ -60,20 +59,4 @@ public class Admin implements Serializable{
 	public void setFirst_name(String first_name) {
 		this.first_name = first_name;
 	}
-	
-	 @Override
-	 public boolean equals(Object o) {
-		 if (this == o) return true;
-		 if (o == null || getClass() != o.getClass()) return false;
-		 Admin that = (Admin) o;
-		 return Objects.equals(admin_id, that.admin_id) && Objects.equals(login, that.login) &&
-				 Objects.equals(pswd_hash, that.pswd_hash) && Objects.equals(last_name, that.last_name) &&
-				 Objects.equals(first_name, that.first_name);
-
-	    }
-	 
-	 @Override
-	 public int hashCode() {
-		 return Objects.hash(admin_id, login, pswd_hash, last_name, first_name);
-	 }
 }

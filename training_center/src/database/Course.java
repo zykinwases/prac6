@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import org.postgresql.util.*;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="course")
 public class Course implements Serializable {
@@ -27,8 +28,9 @@ public class Course implements Serializable {
 	private Long professor_id;
 	@Column(name="relevance")
 	private Boolean isActual;
-	@OneToMany(mappedBy="course_id", fetch=FetchType.EAGER)
-	private Set<Std_less> student_ids = new HashSet<Std_less>(); //set of students attending to the course
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="stdLess", joinColumns=@JoinColumn(name="course_id"), inverseJoinColumns=@JoinColumn(name="student_id"))
+	private Set<Student> student_ids = new HashSet<Student>(); //set of students attending to the course
 	@OneToMany(mappedBy="course_id", fetch=FetchType.EAGER)
 	private Set<Lesson> lessons = new HashSet<Lesson>();
 	@Transient 
@@ -79,10 +81,10 @@ public class Course implements Serializable {
 	public void setIsActual(Boolean isActual) {
 		this.isActual = isActual;
 	}
-	public Set<Std_less> getStudents() {
+	public Set<Student> getStudents() {
 		return student_ids;
 	}
-	public void setStudents(Set<Std_less> students) {
+	public void setStudents(Set<Student> students) {
 		this.student_ids = students;
 	}
 	public Set<Lesson> getLessons() {

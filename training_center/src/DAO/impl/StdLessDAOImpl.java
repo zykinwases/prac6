@@ -1,24 +1,15 @@
 package DAO.impl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import org.hibernate.Session;
-
-import DAO.Std_lessDAO;
-import database.Course;
-import database.Std_less;
-import database.Student;
+import DAO.StdLessDAO;
+import database.StdLess;
 import training_center.HibernateUtil;
 
-public class Std_lessDAOImpl implements Std_lessDAO {
+public class StdLessDAOImpl implements StdLessDAO {
 
-	public void addStd_less(Std_less stdless) throws SQLException {
+	public void addStdLess(StdLess stdless) throws SQLException {
 		Session session = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -26,7 +17,7 @@ public class Std_lessDAOImpl implements Std_lessDAO {
 			session.save(stdless);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Student insertion fault", JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Std_less insertion fault", JOptionPane.OK_OPTION);
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
@@ -34,7 +25,7 @@ public class Std_lessDAOImpl implements Std_lessDAO {
 		}
 	}
 
-	public void updateStd_less(Std_less stdless) throws SQLException {
+	public void updateStdLess(StdLess stdless) throws SQLException {
 		Session session = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -42,7 +33,7 @@ public class Std_lessDAOImpl implements Std_lessDAO {
 			session.update(stdless);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Student update fault", JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Std_less update fault", JOptionPane.OK_OPTION);
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
@@ -50,7 +41,7 @@ public class Std_lessDAOImpl implements Std_lessDAO {
 		}
 	}
 	
-	public void deleteStd_less(Std_less stdless) throws SQLException {
+	public void deleteStdLess(StdLess stdless) throws SQLException {
 		Session session = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
@@ -58,7 +49,7 @@ public class Std_lessDAOImpl implements Std_lessDAO {
 			session.delete(stdless);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Student removing fault", JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Std_less removing fault", JOptionPane.OK_OPTION);
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();

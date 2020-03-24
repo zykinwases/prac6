@@ -25,6 +25,6 @@
 		<mapping class="database.Lesson"/>
 		<mapping class="database.Professor"/>
 		<mapping class="database.Student"/>
-		<mapping class="database.Std_less"/>
+		<mapping class="database.StdLess"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,20 +1,9 @@
-TRUNCATE TABLE std_less;
-DROP TABLE std_less;
+DROP TABLE IF EXISTS stdLess;
+DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS lesson;
+DROP TABLE IF EXISTS course;
+DROP TABLE IF EXISTS professor;
+DROP TABLE IF EXISTS company;
+DROP TABLE IF EXISTS admin_acc;
 
-TRUNCATE TABLE student;
-DROP TABLE student;
-
-TRUNCATE TABLE lesson;
-DROP TABLE lesson;
-
-TRUNCATE TABLE course;
-DROP TABLE course;
-
-TRUNCATE TABLE professor;
-DROP TABLE professor;
-
-TRUNCATE TABLE company;
-DROP TABLE company;
-
-TRUNCATE TABLE admin_acc;
-DROP TABLE admin_acc;
+DROP DATABASE IF EXISTS training_center

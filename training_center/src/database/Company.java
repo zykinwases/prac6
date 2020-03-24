@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="company")
 public class Company implements Serializable{

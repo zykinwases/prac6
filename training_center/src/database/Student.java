@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="student")
 public class Student implements Serializable{
@@ -25,8 +26,9 @@ public class Student implements Serializable{
 	private String mobile;
 	@Column(name="relevance")
 	private Boolean isActual;	
-	@OneToMany(mappedBy="student_id", fetch=FetchType.EAGER)
-	private Set<Std_less> course_ids = new HashSet<Std_less>(); //set of courses of the student
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="stdLess", joinColumns=@JoinColumn(name="student_id"), inverseJoinColumns=@JoinColumn(name="course_id"))
+	private Set<Course> course_ids = new HashSet<Course>(); 
 	@Transient
 	private Set<Course> prev_courses = new HashSet<Course>();
 	
@@ -82,10 +84,10 @@ public class Student implements Serializable{
 	public void setIsActual(Boolean isActual) {
 		this.isActual = isActual;
 	}
-	public Set<Std_less> getCourses() {
+	public Set<Course> getCourses() {
 		return course_ids;
 	}
-	public void setCourses(Set<Std_less> courses) {
+	public void setCourses(Set<Course> courses) {
 		this.course_ids = courses;
 	}
 	public Set<Course> getPrev_courses() {

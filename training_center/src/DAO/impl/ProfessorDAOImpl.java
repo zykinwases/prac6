@@ -79,6 +79,7 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 		return professor;
 	}
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public Collection<Professor> getAllProfessors() throws SQLException {
 		Session session = null;
 		List<Professor> professors = new ArrayList<Professor>();

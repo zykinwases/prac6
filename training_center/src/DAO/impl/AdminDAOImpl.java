@@ -13,6 +13,7 @@ import org.hibernate.Query;
 import DAO.AdminDAO;
 import database.Admin;
 
+@SuppressWarnings("deprecation")
 public class AdminDAOImpl implements AdminDAO {
 
 	public void addAdmin(Admin admin) throws SQLException {
@@ -79,6 +80,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return admin;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Collection<Admin> getAllAdmins() throws SQLException {
 		Session session = null;
 		List<Admin> admins = new ArrayList<Admin>();
@@ -95,6 +97,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return admins;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Boolean authentication(String login, String pswd_hash) throws SQLException {
 		Session session = null;
 		List<Admin> admins = new ArrayList<Admin>();

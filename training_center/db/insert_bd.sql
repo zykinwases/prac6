@@ -24,16 +24,16 @@ INSERT INTO student VALUES (DEFAULT, 'melk', '212ba19b0522e39a46cd56bced3cf37e',
 INSERT INTO student VALUES (DEFAULT, 'ivanka', '0628836d3056aaf2aa3c6451a4283a5d', 'Ivanova', 'Alisa', 89235521111);
 INSERT INTO student VALUES (DEFAULT, 'alfa', '8a73ed74dfb98ee945e131ca8b6499e9', 'Alferov', 'Andrey', 89456723412);
 
-INSERT INTO std_less VALUES (1, 4);
-INSERT INTO std_less VALUES (1, 1);
-INSERT INTO std_less VALUES (1, 3);
-INSERT INTO std_less VALUES (2, 1);
-INSERT INTO std_less VALUES (2, 4);
-INSERT INTO std_less VALUES (3, 4);
-INSERT INTO std_less VALUES (2, 2);
-INSERT INTO std_less VALUES (5, 4);
-INSERT INTO std_less VALUES (5, 3);
-INSERT INTO std_less VALUES (4, 2);
+INSERT INTO stdLess VALUES (1, 4);
+INSERT INTO stdLess VALUES (1, 1);
+INSERT INTO stdLess VALUES (1, 3);
+INSERT INTO stdLess VALUES (2, 1);
+INSERT INTO stdLess VALUES (2, 4);
+INSERT INTO stdLess VALUES (3, 4);
+INSERT INTO stdLess VALUES (2, 2);
+INSERT INTO stdLess VALUES (5, 4);
+INSERT INTO stdLess VALUES (5, 3);
+INSERT INTO stdLess VALUES (4, 2);
 
 --password for admin - admin
 INSERT INTO admin_acc VALUES (DEFAULT, 'admin', 'f189656226a53e50eae44f80d4befb6e', 'Araratova', 'Diana');

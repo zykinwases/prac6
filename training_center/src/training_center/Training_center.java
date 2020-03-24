@@ -10,7 +10,7 @@ public class Training_center {
 	private static LessonDAO lessonDAO = null;
 	private static ProfessorDAO professorDAO = null;
 	private static StudentDAO studentDAO = null;
-	private static Std_lessDAO std_lessDAO = null;
+	private static StdLessDAO stdLessDAO = null;
 	private static Training_center instance = null;
 	
 	public static synchronized Training_center getInstance() {
@@ -55,10 +55,10 @@ public class Training_center {
 		}
 		return studentDAO;
 	}
-	public static Std_lessDAO getStd_lessDAO() {
-		if (std_lessDAO == null) {
-			std_lessDAO = new Std_lessDAOImpl();
+	public StdLessDAO getStdLessDAO() {
+		if (stdLessDAO == null) {
+			stdLessDAO = new StdLessDAOImpl();
 		}
-		return std_lessDAO;
+		return stdLessDAO;
 	}
 }

@@ -2,18 +2,20 @@
 
 <project basedir = "." default = "build" name = "build">
 
-    <property file = "../ant/axis_bujava.properties"/>
+    <property file = "../ant/main.properties"/>
 
     <path id = "classpath.master">
         <fileset dir = "${lib.dir}">
             <include name = "*.jar"/>
+        	<include name = "envers/*.jar"/>
+        	<include name = "required/*.jar"/>
         </fileset>
         <pathelement path = "${build.dir}"/>
     </path>
 
     <target name = "build">
         <mkdir dir = "${build.dir}"/>
-        <copy file="src/hibernate.cfg.xml" todir="${build.dir}"/>
+        <copy file="../src/training_center/resources/hibernate.cfg.xml" todir="${build.dir}"/>
         <javac includeantruntime = "false"
                destdir = "${build.dir}"
                source = "${jdk.version}"

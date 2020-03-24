@@ -12,5 +12,5 @@ public interface StudentDAO {
 	public void deleteStudent(Student student, Boolean active) throws SQLException;
 	public Student getStudentById(Long student_id) throws SQLException;
 	public Collection<Student> getAllStudents(Boolean active) throws SQLException;
-	public Collection<Student> getStudentsByCourse(Course course, Boolean active) throws SQLException;
+	public Collection<Student> getStudentsByCourse(Course course, Boolean forever) throws SQLException;
 }

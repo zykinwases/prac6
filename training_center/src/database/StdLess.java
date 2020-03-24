@@ -3,20 +3,18 @@ package database;
 import java.io.Serializable;
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
-@Table(name="std_less")
-public class Std_less implements Serializable{
+@Table(name="stdless")
+public class StdLess implements Serializable{
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private Long id;
 	@Column(name="student_id")
 	private Long student_id;
 	@Column(name="course_id")
 	private Long course_id;
 	
-	public Std_less() {}
-	public Std_less(Long student_id, Long course_id) {
+	public StdLess() {}
+	public StdLess(Long student_id, Long course_id) {
 		this.student_id = student_id;
 		this.course_id = course_id;
 	}

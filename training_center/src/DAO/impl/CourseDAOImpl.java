@@ -14,10 +14,11 @@ import org.hibernate.Session;
 import DAO.CourseDAO;
 import database.Course;
 import database.Professor;
-import database.Std_less;
+import database.StdLess;
 import database.Student;
 import training_center.HibernateUtil;
 
+@SuppressWarnings("deprecation")
 public class CourseDAOImpl implements CourseDAO {
 
 	public void addCourse(Course course) throws SQLException {
@@ -52,14 +53,22 @@ public class CourseDAOImpl implements CourseDAO {
 		}
 	}
 
-	public void deleteCourse(Course course, Boolean active) throws SQLException {
+	public void deleteCourse(Course course, Boolean forever) throws SQLException {
 		Session session = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			if (active) {
+			if (forever) {
 				session.delete(course);
 			} else {
+				List<Student> students = new ArrayList<Student>();
+				students.addAll(course.getStudents());
+				Iterator<Student> iter = students.iterator();
+				while (iter.hasNext()) {
+					Student c = iter.next();
+					session.delete(new StdLess(c.getId(), course.getId()));
+					c.addPrev_courses(course);
+				}
 				course.setIsActual(false);
 				session.update(course);
 			}
@@ -89,6 +98,7 @@ public class CourseDAOImpl implements CourseDAO {
 		return course;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Collection<Course> getAllCourses(Boolean active) throws SQLException {
 		Session session = null;
 		List<Course> courses = new ArrayList<Course>();
@@ -112,6 +122,7 @@ public class CourseDAOImpl implements CourseDAO {
 		return courses;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Collection<Course> getCoursesByProf(Professor professor, Boolean active) throws SQLException {
 		Session session = null;
 		List<Course> res = new ArrayList<Course>();
@@ -144,17 +155,12 @@ public class CourseDAOImpl implements CourseDAO {
 	
 	public Collection<Course> getCoursesByStudent(Student student, Boolean active) throws SQLException {
 		Session session = null;
-		List<Std_less> res = new ArrayList<Std_less>();
 		List<Course> courses = new ArrayList<Course>();
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			res.addAll(student.getCourses());
+			courses.addAll(student.getCourses());
 			session.getTransaction().commit();
-			Iterator iter = res.iterator();
-			while (iter.hasNext()) {
-				courses.add(getCourseById((((Std_less)iter.next()).getCourse_id())));
-			}
 			if (!active) {
 				courses.addAll(student.getPrev_courses());
 			}

@@ -79,6 +79,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 		return company;
 	}
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public Collection<Company> getAllCompanies() throws SQLException {
 		Session session = null;
 		List<Company> companies = new ArrayList<Company>();

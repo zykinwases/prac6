@@ -38,10 +38,10 @@ CREATE TABLE IF NOT EXISTS student (
 	relevance BOOLEAN DEFAULT TRUE --if student leaves center he is not deleted to save (and show) history
 );
 
-CREATE TABLE IF NOT EXISTS std_less (
-	id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS stdLess (
 	student_id INTEGER REFERENCES student (student_id),
-	course_id INTEGER REFERENCES course (course_id)
+	course_id INTEGER REFERENCES course (course_id),
+	PRIMARY KEY (student_id, course_id)
 );
 
 CREATE TABLE IF NOT EXISTS admin_acc (
