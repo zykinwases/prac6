@@ -1,14 +1,13 @@
 package database;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+
 import javax.persistence.*;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name="company")
 public class Company implements Serializable{
+	private static final long serialVersionUID = -3128915115233645441L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="company_id")
@@ -17,8 +16,6 @@ public class Company implements Serializable{
 	private String name;
 	@Column(name="address")
 	private String address;
-	@OneToMany(mappedBy="company_id", fetch=FetchType.EAGER)
-	private Set<Professor> staff = new HashSet<Professor>();
 	
 	public Company() {}
 	public Company(String name, String address) {
@@ -43,11 +40,5 @@ public class Company implements Serializable{
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public Set<Professor> getStaff() {
-		return staff;
-	}
-	public void setStaff(Set<Professor> staff) {
-		this.staff = staff;
 	}
 }

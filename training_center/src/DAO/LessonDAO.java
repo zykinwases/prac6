@@ -2,7 +2,6 @@ package DAO;
 
 import database.Lesson;
 import database.Course;
-import database.Student;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -13,6 +12,5 @@ public interface LessonDAO {
 	public void deleteLesson(Lesson lesson) throws SQLException;
 	public Lesson getLessonById(Long lesson_id) throws SQLException;
 	public Collection<Lesson> getAllLessons() throws SQLException;
-	public Collection<Lesson> getNextLessonsFor(Long time, Student student) throws SQLException;
 	public Collection<Lesson> getLessonsByCourse(Course course) throws SQLException;
 }

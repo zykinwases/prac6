@@ -5,21 +5,22 @@ import java.sql.Timestamp;
 
 import javax.persistence.*;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name="lesson")
 public class Lesson implements Serializable{
+	private static final long serialVersionUID = -1575596271312344023L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="lesson_id")
 	private Long lesson_id;
-	@Column(name="course_id")
-	private Long course_id;
+	@ManyToOne
+	@JoinColumn(name="course_id")
+	private Course course_id;
 	@Column(name="time")
 	private Timestamp time;
 	
 	public Lesson() {}
-	public Lesson(Long course_id, Timestamp time) {
+	public Lesson(Course course_id, Timestamp time) {
 		this.course_id = course_id;
 		this.time = time;
 	}
@@ -30,10 +31,10 @@ public class Lesson implements Serializable{
 	public void setId(Long id) {
 		this.lesson_id = id;
 	}
-	public Long getCourse_id() {
+	public Course getCourse_id() {
 		return course_id;
 	}
-	public void setCourse_id(Long course_id) {
+	public void setCourse_id(Course course_id) {
 		this.course_id = course_id;
 	}
 	public Timestamp getTime() {

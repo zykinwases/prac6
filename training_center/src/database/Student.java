@@ -1,15 +1,12 @@
 package database;
 
-import database.Course;
-import java.util.Set;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name="student")
 public class Student implements Serializable{
+	private static final long serialVersionUID = 6000656888692953836L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="student_id")
@@ -24,22 +21,14 @@ public class Student implements Serializable{
 	private String last_name;
 	@Column(name="mobile")
 	private String mobile;
-	@Column(name="relevance")
-	private Boolean isActual;	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="stdLess", joinColumns=@JoinColumn(name="student_id"), inverseJoinColumns=@JoinColumn(name="course_id"))
-	private Set<Course> course_ids = new HashSet<Course>(); 
-	@Transient
-	private Set<Course> prev_courses = new HashSet<Course>();
 	
 	public Student() {}
-	public Student(String login, String pswd_hash, String first_name, String last_name, String mobile, Boolean isActual) {
+	public Student(String login, String pswd_hash, String first_name, String last_name, String mobile) {
 		this.login = login;
 		this.pswd_hash = pswd_hash;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.mobile = mobile;
-		this.isActual = isActual;
 	}
 	
 	public Long getId() {
@@ -77,26 +66,5 @@ public class Student implements Serializable{
 	}
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
-	}
-	public Boolean getIsActual() {
-		return isActual;
-	}
-	public void setIsActual(Boolean isActual) {
-		this.isActual = isActual;
-	}
-	public Set<Course> getCourses() {
-		return course_ids;
-	}
-	public void setCourses(Set<Course> courses) {
-		this.course_ids = courses;
-	}
-	public Set<Course> getPrev_courses() {
-		return prev_courses;
-	}
-	public void setPrev_courses(Set<Course> prev_courses) {
-		this.prev_courses = prev_courses;
-	}
-	public void addPrev_courses(Course course) {
-		prev_courses.add(course);
 	}
 }

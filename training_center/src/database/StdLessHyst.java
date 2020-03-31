@@ -4,11 +4,11 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="stdless")
-public class StdLess implements Serializable{
-	private static final long serialVersionUID = -6578672338881851419L;
+@Table(name="stdlesshyst")
+public class StdLessHyst implements Serializable{
+	private static final long serialVersionUID = 9032281743010438482L;
 	@EmbeddedId
-	private StdLessId id;
+	private StdLessHystId id;
 	@ManyToOne
 	@JoinColumn(name="student_id", insertable=false, updatable=false)
 	private Student student_id;
@@ -16,9 +16,9 @@ public class StdLess implements Serializable{
 	@JoinColumn(name="course_id", insertable=false, updatable=false)
 	private Course course_id;
 
-	public StdLess() {}
-	public StdLess(Student student_id, Course course_id) {
-		this.id = new StdLessId(student_id.getId(), course_id.getId());
+	public StdLessHyst() {}
+	public StdLessHyst(Student student_id, Course course_id) {
+		this.id = new StdLessHystId(student_id.getId(), course_id.getId());
 		this.student_id = student_id;
 		this.course_id = course_id;
 	}

@@ -11,6 +11,7 @@ public class Training_center {
 	private static ProfessorDAO professorDAO = null;
 	private static StudentDAO studentDAO = null;
 	private static StdLessDAO stdLessDAO = null;
+	private static StdLessHystDAO stdLessHystDAO = null;
 	private static Training_center instance = null;
 	
 	public static synchronized Training_center getInstance() {
@@ -60,5 +61,11 @@ public class Training_center {
 			stdLessDAO = new StdLessDAOImpl();
 		}
 		return stdLessDAO;
+	}
+	public StdLessHystDAO getStdLessHystDAO() {
+		if (stdLessHystDAO == null) {
+			stdLessHystDAO = new StdLessHystDAOImpl();
+		}
+		return stdLessHystDAO;
 	}
 }

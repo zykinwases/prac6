@@ -3,11 +3,10 @@ package database;
 import java.io.Serializable;
 import javax.persistence.*;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name="admin_acc")
 public class Admin implements Serializable{
-	
+	private static final long serialVersionUID = 1326933885613173982L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="admin_id")

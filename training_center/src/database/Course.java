@@ -1,19 +1,12 @@
 package database;
 
-import database.Student;
-
-import java.util.Set;
 import java.io.Serializable;
-
 import javax.persistence.*;
 
-import java.util.HashSet;
-import org.postgresql.util.*;
-
-@SuppressWarnings("serial")
 @Entity
 @Table(name="course")
 public class Course implements Serializable {
+	private static final long serialVersionUID = 3253934423554664660L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="course_id")
@@ -21,28 +14,19 @@ public class Course implements Serializable {
 	@Column(name="name")
 	private String name;
 	@Column(name="duration")
-	private PGInterval duration;
+	private String duration;
 	@Column(name="intense")
-	private PGInterval intense;
-	@Column(name="professor_id")
-	private Long professor_id;
-	@Column(name="relevance")
-	private Boolean isActual;
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="stdLess", joinColumns=@JoinColumn(name="course_id"), inverseJoinColumns=@JoinColumn(name="student_id"))
-	private Set<Student> student_ids = new HashSet<Student>(); //set of students attending to the course
-	@OneToMany(mappedBy="course_id", fetch=FetchType.EAGER)
-	private Set<Lesson> lessons = new HashSet<Lesson>();
-	@Transient 
-	private Set<Student> prev_students = new HashSet<Student>();
+	private String intense;
+	@ManyToOne
+	@JoinColumn(name="professor_id")
+	private Professor professor_id;	
 	
 	public Course() {}
-	public Course(String name, PGInterval duration, PGInterval intense, Long professor_id, Boolean isActual) {
+	public Course(String name, String duration, String intense, Professor professor_id) {
 		this.name = name;
 		this.duration = duration;
 		this.intense = intense;
 		this.professor_id = professor_id;
-		this.isActual = isActual;
 	}
 	
 	public Long getId() {
@@ -57,49 +41,22 @@ public class Course implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public PGInterval getDuration() {
+	public String getDuration() {
 		return duration;
 	}
-	public void setDuration(PGInterval duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-	public PGInterval getIntense() {
+	public String getIntense() {
 		return intense;
 	}
-	public void setIntense(PGInterval intense) {
+	public void setIntense(String intense) {
 		this.intense = intense;
 	}
-	public Long getProfessor_id() {
+	public Professor getProfessor_id() {
 		return professor_id;
 	}
-	public void setProfessor_id(Long professor_id) {
+	public void setProfessor_id(Professor professor_id) {
 		this.professor_id = professor_id;
-	}
-	public Boolean getIsActual() {
-		return isActual;
-	}
-	public void setIsActual(Boolean isActual) {
-		this.isActual = isActual;
-	}
-	public Set<Student> getStudents() {
-		return student_ids;
-	}
-	public void setStudents(Set<Student> students) {
-		this.student_ids = students;
-	}
-	public Set<Lesson> getLessons() {
-		return lessons;
-	}
-	public void setLessons(Set<Lesson> lessons) {
-		this.lessons = lessons;
-	}
-	public Set<Student> getPrev_students() {
-		return prev_students;
-	}
-	public void setPrev_students(Set<Student> prev_students) {
-		this.prev_students = prev_students;
-	}
-	public void addPrev_student(Student student) {
-		prev_students.add(student);
 	}
 }

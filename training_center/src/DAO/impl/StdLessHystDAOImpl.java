@@ -4,44 +4,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import javax.persistence.TypedQuery;
-
 import org.hibernate.Session;
 
-import DAO.CompanyDAO;
-import database.Company;
+import DAO.StdLessHystDAO;
+import database.StdLessHyst;
 import training_center.HibernateUtil;
 
-public class CompanyDAOImpl implements CompanyDAO {
-
-	public void addCompany(Company company) throws SQLException {
+public class StdLessHystDAOImpl implements StdLessHystDAO {
+	public void addStdLessHyst(StdLessHyst StdLessHyst) throws SQLException {
 		Session session = null;
 		session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		session.save(company);
+		session.save(StdLessHyst);
 		session.getTransaction().commit();
 		if (session != null && session.isOpen()) {
 			session.close();
 		}
 	}
 
-	public void updateCompany(Company company) throws SQLException {
+	public void updateStdLessHyst(StdLessHyst StdLessHyst) throws SQLException {
 		Session session = null;
 		session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		session.update(company);
+		session.update(StdLessHyst);
 		session.getTransaction().commit();
 		if (session != null && session.isOpen()) {
 			session.close();
 		}
 	}
-
-	public void deleteCompany(Company company) throws SQLException {
+	
+	public void deleteStdLessHyst(StdLessHyst StdLessHyst) throws SQLException {
 		Session session = null;
 		session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		session.delete(company);
+		session.delete(StdLessHyst);
 		session.getTransaction().commit();
 		if (session != null && session.isOpen()) {
 			session.close();
@@ -49,35 +46,38 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Company getCompanyById(Long company_id) throws SQLException {
+	public Collection<StdLessHyst> getCoursesByStudent(Long student_id) throws SQLException {
 		Session session = null;
-		Company company = null;
+		List<StdLessHyst> courses = new ArrayList<StdLessHyst>();
 		session = HibernateUtil.getSessionFactory().openSession();
-		TypedQuery<Company> query = session.createQuery(
-				"SELECT e FROM Company e " +
-				"WHERE e.company_id = :id")
-				.setParameter("id", company_id);
-		if (!query.getResultList().isEmpty()) {
-			company = query.getSingleResult();
-		}		
+		session.beginTransaction();
+		TypedQuery<StdLessHyst> query = session.createQuery(
+				"SELECT e FROM StdLessHyst e " +
+				"WHERE e.id.student_id = :id")
+				.setParameter("id", student_id);
+		courses = query.getResultList();
+		session.getTransaction().commit();
 		if (session != null && session.isOpen()) {
 			session.close();
 		}
-		return company;
+		return courses;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<Company> getAllCompanies() throws SQLException {
+	public Collection<StdLessHyst> getStudentsByCourse(Long course_id) throws SQLException {
 		Session session = null;
-		List<Company> companies = new ArrayList<Company>();
+		List<StdLessHyst> courses = new ArrayList<StdLessHyst>();
 		session = HibernateUtil.getSessionFactory().openSession();
-		TypedQuery<Company> query = session.createQuery(
-				"SELECT e FROM Company e ");
-		companies = query.getResultList();
+		session.beginTransaction();
+		TypedQuery<StdLessHyst> query = session.createQuery(
+				"SELECT e FROM StdLessHyst e " +
+				"WHERE e.id.course_id = :id")
+				.setParameter("id", course_id);
+		courses = query.getResultList();
+		session.getTransaction().commit();
 		if (session != null && session.isOpen()) {
 			session.close();
 		}
-		return companies;
-	}
-
+		return courses;
+	}	
 }

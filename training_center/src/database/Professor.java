@@ -1,15 +1,13 @@
 package database;
 
 import java.io.Serializable;
-import database.Course;
-import java.util.Set;
-import javax.persistence.*;
-import java.util.HashSet;
 
-@SuppressWarnings("serial")
+import javax.persistence.*;
+
 @Entity
 @Table(name="professor")
 public class Professor implements Serializable {
+	private static final long serialVersionUID = -4292995305758794393L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="professor_id")
@@ -22,13 +20,12 @@ public class Professor implements Serializable {
 	private String last_name;
 	@Column(name="first_name")
 	private String first_name;
-	@Column(name="company_id")
-	private Long company_id;
-	@OneToMany(mappedBy="professor_id", fetch=FetchType.EAGER)
-	private Set<Course> courses = new HashSet<Course>();
+	@ManyToOne
+	@JoinColumn(name="company_id")
+	private Company company_id;
 	
 	public Professor() {}
-	public Professor(String login, String pswd_hash, String last_name, String first_name, Long company_id) {
+	public Professor(String login, String pswd_hash, String last_name, String first_name, Company company_id) {
 		this.login = login;
 		this.pswd_hash = pswd_hash;
 		this.last_name = last_name;
@@ -66,17 +63,10 @@ public class Professor implements Serializable {
 	public void setFirst_name(String first_name) {
 		this.first_name = first_name;
 	}
-	public Long getCompany_id() {
+	public Company getCompany_id() {
 		return company_id;
 	}
-	public void setCompany_id(Long company_id) {
+	public void setCompany_id(Company company_id) {
 		this.company_id = company_id;
 	}
-	public Set<Course> getCourses() {
-		return courses;
-	}
-	public void setCourses(Set<Course> courses) {
-		this.courses = courses;
-	}
-	
 }
