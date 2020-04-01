@@ -10,5 +10,6 @@ public interface StudentDAO {
 	public void updateStudent(Student student) throws SQLException;
 	public void deleteStudent(Student student) throws SQLException;
 	public Student getStudentById(Long student_id) throws SQLException;
+	public Student getStudentByLogin(String login) throws SQLException;
 	public Collection<Student> getAllStudents() throws SQLException;
 }

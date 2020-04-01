@@ -67,6 +67,24 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@SuppressWarnings("unchecked")
+	public Company getCompanyByName(String name) throws SQLException {
+		Session session = null;
+		Company company = null;
+		session = HibernateUtil.getSessionFactory().openSession();
+		TypedQuery<Company> query = session.createQuery(
+				"SELECT e FROM Company e " +
+				"WHERE e.name = :name")
+				.setParameter("name", name);
+		if (!query.getResultList().isEmpty()) {
+			company = query.getSingleResult();
+		}		
+		if (session != null && session.isOpen()) {
+			session.close();
+		}
+		return company;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public Collection<Company> getAllCompanies() throws SQLException {
 		Session session = null;
 		List<Company> companies = new ArrayList<Company>();
@@ -79,5 +97,4 @@ public class CompanyDAOImpl implements CompanyDAO {
 		}
 		return companies;
 	}
-
 }

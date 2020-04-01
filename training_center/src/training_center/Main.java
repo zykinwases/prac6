@@ -62,6 +62,45 @@ public class Main {
 		
 		try {
 			//insertall();
+			System.out.println("test1");
+			assert(Training_center.getInstance().getAdminDAO().getAdminById(((long) 100)) == null);
+	        Admin admin = Training_center.getInstance().getAdminDAO().getAdminById(((long) 1));
+	        System.out.println(admin.getLogin());
+	        assert(admin.getId() == 1);
+	        assert(admin.getLogin() == "admin");
+	        assert(admin.getPswd_hash() == "s189656226a53e50eae44f80d4befb6e");
+	        assert(admin.getLast_name() == "Araratova");
+	        assert(admin.getFirst_name() == "Diana");
+
+			System.out.println("test2");
+			Training_center.getInstance().getAdminDAO().addAdmin(new Admin((long) 2 ,"betteradmin", "s189656226a53e50eae44f80d4befb6e", "Gorge", "Alex"));
+	    	admin = Training_center.getInstance().getAdminDAO().getAdminById(((long) 2));
+	    	assert("betteradmin" == admin.getLogin());
+
+			System.out.println("test3");
+			int i = 1;
+	        Collection<Admin> admins = Training_center.getInstance().getAdminDAO().getAllAdmins();
+	        Iterator<Admin> iter1 = admins.iterator();
+	        while (iter1.hasNext()) {
+	        	Admin ad = iter1.next();
+	        	System.out.println(ad.getId());
+	        	assert(i == ad.getId());
+	        	i = i + 1;
+	        }
+
+			System.out.println("test4");
+			admin = Training_center.getInstance().getAdminDAO().getAdminById(((long) 2));
+			admin.setLogin("bestadmin");
+			Training_center.getInstance().getAdminDAO().updateAdmin(admin);
+			admin = Training_center.getInstance().getAdminDAO().getAdminById(((long) 2));
+	    	assert("bestadmin" == admin.getLogin());
+	    	
+	    	System.out.println("test5");
+	    	Training_center.getInstance().getAdminDAO().deleteAdmin(
+	    			Training_center.getInstance().getAdminDAO().getAdminById((long) 2));
+	    	admin = Training_center.getInstance().getAdminDAO().getAdminById(((long) 2));
+	    	assert(admin == null);
+	    	
 			Student std = Training_center.getInstance().getStudentDAO().getStudentById((long)2);
 			System.out.println(std.getLogin()); 	
 			Course cor = Training_center.getInstance().getCourseDAO().getCourseById((long)2);

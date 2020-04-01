@@ -27,6 +27,13 @@ public class Admin implements Serializable{
 		this.last_name = last_name;
 		this.first_name = first_name;
 	}
+	public Admin(Long id, String login, String pswd_hash, String last_name, String first_name) {
+		this.admin_id = id;
+		this.login = login;
+		this.pswd_hash = pswd_hash;
+		this.last_name = last_name;
+		this.first_name = first_name;
+	}
 	
 	public Long getId() {
 		return admin_id;

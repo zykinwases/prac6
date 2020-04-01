@@ -4,6 +4,7 @@ import database.Lesson;
 import database.Course;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Collection;
 
 public interface LessonDAO {
@@ -12,5 +13,6 @@ public interface LessonDAO {
 	public void deleteLesson(Lesson lesson) throws SQLException;
 	public Lesson getLessonById(Long lesson_id) throws SQLException;
 	public Collection<Lesson> getAllLessons() throws SQLException;
+	public Collection<Lesson> getLessonByTime(Timestamp from, Timestamp to) throws SQLException;
 	public Collection<Lesson> getLessonsByCourse(Course course) throws SQLException;
 }

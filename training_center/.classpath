@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry excluding="training_center/resources/" kind="src" path="src"/>
-	<classpathentry excluding="envers/|jpa-metamodel-generator/|optional/agroal/|optional/c3p0/|optional/ehcache/|optional/hikaricp/|optional/jcache/|optional/proxool/|optional/vibur/|osgi/|required/|spatial/|jpa-metamodel-generator/|optional/" kind="src" path="libs"/>
+	<classpathentry excluding="envers/|jpa-metamodel-generator/|jpa-metamodel-generator/|optional/|optional/agroal/|optional/c3p0/|optional/ehcache/|optional/hikaricp/|optional/jcache/|optional/proxool/|optional/vibur/|osgi/|reportng-1.1.4.jar|required/|spatial/|testng-6.14.3.jar" kind="src" path="libs"/>
 	<classpathentry kind="src" path="src/training_center/resources"/>
 	<classpathentry kind="src" path="db"/>
 	<classpathentry kind="src" path="ant"/>

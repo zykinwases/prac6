@@ -65,6 +65,24 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 	}
 
 	@SuppressWarnings("unchecked")
+	public Professor getProfessorByLogin(String login) throws SQLException {
+		Session session = null;
+		Professor professor = null;
+		session = HibernateUtil.getSessionFactory().openSession();
+		TypedQuery<Professor> query = session.createQuery(
+				"SELECT e FROM Professor e " +
+				"WHERE e.login = :login")
+				.setParameter("login", login);
+		if (!query.getResultList().isEmpty()) {
+			professor = query.getSingleResult();
+		}		
+		if (session != null && session.isOpen()) {
+			session.close();
+		}
+		return professor;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public Collection<Professor> getAllProfessors() throws SQLException {
 		Session session = null;
 		List<Professor> professors = new ArrayList<Professor>();

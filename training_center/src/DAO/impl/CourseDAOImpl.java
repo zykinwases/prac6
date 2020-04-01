@@ -66,6 +66,24 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@SuppressWarnings("unchecked")
+	public Course getCourseByName(String name) throws SQLException {
+		Session session = null;
+		Course course = null;
+		session = HibernateUtil.getSessionFactory().openSession();
+		TypedQuery<Course> query = session.createQuery(
+				"SELECT e FROM Course e " +
+				"WHERE e.name = :name")
+				.setParameter("name", name);
+		if (!query.getResultList().isEmpty()) {
+			course = query.getSingleResult();
+		}		
+		if (session != null && session.isOpen()) {
+			session.close();
+		}
+		return course;
+	}
+
+	@SuppressWarnings("unchecked")
 	public Collection<Course> getAllCourses() throws SQLException {
 		Session session = null;
 		List<Course> courses = new ArrayList<Course>();

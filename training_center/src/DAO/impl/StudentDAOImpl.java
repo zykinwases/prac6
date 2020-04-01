@@ -65,6 +65,25 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Override
+	public Student getStudentByLogin(String login) throws SQLException {
+		Session session = null;
+		Student student = null;
+		session = HibernateUtil.getSessionFactory().openSession();	
+		TypedQuery<Student> query = session.createQuery(
+				"SELECT e FROM Student e " +
+				"WHERE e.login = :login")
+				.setParameter("id", login);
+		if (!query.getResultList().isEmpty()) {
+			student = query.getSingleResult();
+		}
+		if (session != null && session.isOpen()) {
+			session.close();
+		}
+		return student;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public Collection<Student> getAllStudents() throws SQLException {
 		Session session = null;
 		List<Student> students = new ArrayList<Student>();

@@ -1,9 +1,12 @@
 package DAO.impl;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 
@@ -78,6 +81,25 @@ public class LessonDAOImpl implements LessonDAO {
 		}
 		return lessons;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Collection<Lesson> getLessonByTime(Timestamp from, Timestamp to) throws SQLException{
+		Session session = null;
+		List<Lesson> lessons = new ArrayList<Lesson>();
+		session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		TypedQuery<Lesson> query = session.createQuery(
+				"SELECT e FROM Lesson e " +
+				"WHERE e.time BETWEEN :from AND :to");
+		query.setParameter("from", from, TemporalType.TIMESTAMP);
+		query.setParameter("to", to, TemporalType.TIMESTAMP);
+		lessons = query.getResultList();
+		session.getTransaction().commit();
+		if (session != null && session.isOpen()) {
+			session.close();
+		}
+		return lessons;
+	}
 
 	@SuppressWarnings("unchecked")
 	public Collection<Lesson> getLessonsByCourse(Course course) throws SQLException {
@@ -96,5 +118,4 @@ public class LessonDAOImpl implements LessonDAO {
 		}
 		return lessons;
 	}
-
 }

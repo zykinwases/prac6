@@ -51,6 +51,7 @@ public class AdminDAOImpl implements AdminDAO {
 		Session session = null;
 		Admin admin = null;
 		session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
 		TypedQuery<Admin> query = session.createQuery(
 				"SELECT e FROM Admin e " +
 				"WHERE e.admin_id = :id")
@@ -58,6 +59,7 @@ public class AdminDAOImpl implements AdminDAO {
 		if (!query.getResultList().isEmpty()) {
 			admin = query.getSingleResult();
 		}		
+		session.getTransaction().commit();
 		if (session != null && session.isOpen()) {
 			session.close();
 		}
@@ -65,13 +67,35 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@SuppressWarnings("unchecked")
+	public Admin getAdminByLogin(String login) throws SQLException {
+		Session session = null;
+		Admin admin = null;
+		session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		TypedQuery<Admin> query = session.createQuery(
+				"SELECT e FROM Admin e " +
+				"WHERE e.login = :login")
+				.setParameter("login", login);
+		if (!query.getResultList().isEmpty()) {
+			admin = query.getSingleResult();
+		}		
+		session.getTransaction().commit();
+		if (session != null && session.isOpen()) {
+			session.close();
+		}
+		return admin;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public Collection<Admin> getAllAdmins() throws SQLException {
 		Session session = null;
 		List<Admin> admins = new ArrayList<Admin>();
 		session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
 		TypedQuery<Admin> query = session.createQuery(
 				"SELECT e FROM Admin e");
 		admins = query.getResultList();
+		session.getTransaction().commit();
 		if (session != null && session.isOpen()) {
 			session.close();
 		}

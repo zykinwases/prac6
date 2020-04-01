@@ -10,5 +10,6 @@ public interface CompanyDAO {
 	public void updateCompany(Company company) throws SQLException;
 	public void deleteCompany(Company company) throws SQLException;
 	public Company getCompanyById(Long company_id) throws SQLException;
+	public Company getCompanyByName(String name) throws SQLException;
 	public Collection<Company> getAllCompanies() throws SQLException;
 }
