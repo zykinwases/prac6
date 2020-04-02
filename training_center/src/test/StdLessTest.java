@@ -2,14 +2,16 @@ package test;
 
 import java.util.Collection;
 import java.util.Iterator;
+
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import database.StdLess;
 import database.StdLessHyst;
 import training_center.Training_center;
 
-public class StdLessTest {
-	private int ids[] = {4, 1, 3, 0};
+public class StdLessTest extends Assert {
+	private long ids[] = {4, 1, 3, 0};
 	
 	@Test
 	public void getByStudent() throws Exception{
@@ -18,7 +20,7 @@ public class StdLessTest {
 		Iterator<StdLess> iter = courses.iterator();
 		while (iter.hasNext()) {
 			StdLess c = iter.next();
-			assert(c.getCourse_id().getId() == ids[i]);
+			assertEquals((long) c.getCourse_id().getId(), ids[i]);
 			i = i + 1;
 		}
 	}
@@ -31,7 +33,7 @@ public class StdLessTest {
 		Collection<StdLessHyst> h = Training_center.getInstance().getStdLessHystDAO().getStudentsByCourse((long) 3);
 		Iterator<StdLessHyst> iter = h.iterator();
 		StdLessHyst s = iter.next();
-		assert(s.getStudent_id().getId() == 5);
-		assert(!iter.hasNext());
+		assertEquals((long) s.getStudent_id().getId(), 5);
+		assertFalse(iter.hasNext());
 	}
 }

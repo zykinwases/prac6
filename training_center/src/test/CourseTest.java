@@ -2,12 +2,14 @@ package test;
 
 import java.util.Collection;
 import java.util.Iterator;
+
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import database.Course;
 import training_center.Training_center;
 
-public class CourseTest {
+public class CourseTest extends Assert {
 	private String names[] = {"Basics of banking", "Mathematical statistics in banking", "not going here"};
 	
 	@Test
@@ -18,7 +20,7 @@ public class CourseTest {
 		Iterator<Course> iter = courses.iterator();
 		while (iter.hasNext()) {
 			Course c = iter.next();
-			assert(c.getName().equals(names[i]));
+			assertEquals(c.getName(), names[i]);
 			i = i + 1;
 		}
 	}

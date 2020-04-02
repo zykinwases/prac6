@@ -3,40 +3,41 @@ package test;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import database.*;
 import training_center.Training_center;
 
-public class AdminTest {
+public class AdminTest extends Assert {
 	
     @Test(priority = 0)
     public void getById() throws Exception {   	
-        assert(Training_center.getInstance().getAdminDAO().getAdminById((long) 100) == null);
+        assertNull(Training_center.getInstance().getAdminDAO().getAdminById((long) 100));
         Admin admin = Training_center.getInstance().getAdminDAO().getAdminById((long) 1);
-        assert(admin.getId() == 1);
-        assert(admin.getLogin().equals("admin")); 
-        assert(admin.getPswd_hash().equals("f189656226a53e50eae44f80d4befb6e"));
-        assert(admin.getLast_name().equals("Araratova"));
-        assert(admin.getFirst_name().equals("Diana"));
+        assertEquals((long) admin.getId(), 1);
+        assertEquals(admin.getLogin(), "admin"); 
+        assertEquals(admin.getPswd_hash(), "f189656226a53e50eae44f80d4befb6e");
+        assertEquals(admin.getLast_name(), "Araratova");
+        assertEquals(admin.getFirst_name(), "Diana");
     }
 
     @Test(priority = 0)
     public void insert() throws Exception {
     	Training_center.getInstance().getAdminDAO().addAdmin(new Admin((long) 2, "betteradmin", "s189656226a53e50eae44f80d4befb6e", "Gorge", "Alex"));
     	Admin admin = Training_center.getInstance().getAdminDAO().getAdminById(((long) 2));
-    	assert(admin.getLogin().equals("betteradmin"));
+    	assertEquals(admin.getLogin(), "betteradmin");
     }
     
     @Test(priority = 0)
     public void getByLogin() throws Exception {   	
-        assert(Training_center.getInstance().getAdminDAO().getAdminByLogin("noadmin") == null);
+        assertNull(Training_center.getInstance().getAdminDAO().getAdminByLogin("noadmin"));
         Admin admin = Training_center.getInstance().getAdminDAO().getAdminByLogin("admin");
-        assert(admin.getId() == 1);
-        assert(admin.getLogin().equals("admin")); 
-        assert(admin.getPswd_hash().equals("f189656226a53e50eae44f80d4befb6e"));
-        assert(admin.getLast_name().equals("Araratova"));
-        assert(admin.getFirst_name().equals("Diana"));
+        assertEquals((long) admin.getId(), 1);
+        assertEquals(admin.getLogin(), "admin"); 
+        assertEquals(admin.getPswd_hash(), "f189656226a53e50eae44f80d4befb6e");
+        assertEquals(admin.getLast_name(), "Araratova");
+        assertEquals(admin.getFirst_name(), "Diana");
     }
     
     @Test(priority = 1)
@@ -46,7 +47,7 @@ public class AdminTest {
         Iterator<Admin> iter = admins.iterator();
         while (iter.hasNext()) {
         	Admin ad = iter.next();
-        	assert(i == ad.getId());
+        	assertEquals(i, ad.getId());
         	i = i + 1;
         }
     }
@@ -57,7 +58,7 @@ public class AdminTest {
 		admin.setLogin("bestadmin");
 		Training_center.getInstance().getAdminDAO().updateAdmin(admin);
 		admin = Training_center.getInstance().getAdminDAO().getAdminById(((long) 2));
-    	assert(admin.getLogin().equals("bestadmin"));
+    	assertEquals(admin.getLogin(), "bestadmin");
     }
     
     @Test(priority = 2)
@@ -65,6 +66,6 @@ public class AdminTest {
     	Training_center.getInstance().getAdminDAO().deleteAdmin(
     			Training_center.getInstance().getAdminDAO().getAdminById((long) 2));
     	Admin admin = Training_center.getInstance().getAdminDAO().getAdminById(((long) 2));
-    	assert(admin == null);
+    	assertNull(admin);
     }
 }
