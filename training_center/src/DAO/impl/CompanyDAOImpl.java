@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 import DAO.CompanyDAO;
 import database.Company;
-import training_center.HibernateUtil;
+import database.HibernateUtil;
 
 public class CompanyDAOImpl implements CompanyDAO {
 

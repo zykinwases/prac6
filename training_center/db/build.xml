@@ -2,7 +2,7 @@
 
 <project basedir="." default="all" name="setupdb">
 
-	<property file="../ant/main.properties"/>
+	<property file="../main.properties"/>
 	
 	<target name="createdb">
 	    <sql classpath="${postgresql.classpath}"

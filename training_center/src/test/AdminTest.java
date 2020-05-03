@@ -7,7 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import database.*;
-import training_center.Training_center;
 
 public class AdminTest extends Assert {
 	
@@ -15,7 +14,7 @@ public class AdminTest extends Assert {
     public void getById() throws Exception {   	
         assertNull(Training_center.getInstance().getAdminDAO().getAdminById((long) 100));
         Admin admin = Training_center.getInstance().getAdminDAO().getAdminById((long) 1);
-        assertEquals((long) admin.getId(), 1);
+        assertEquals((long) admin.getAdmin_id(), 1);
         assertEquals(admin.getLogin(), "admin"); 
         assertEquals(admin.getPswd_hash(), "f189656226a53e50eae44f80d4befb6e");
         assertEquals(admin.getLast_name(), "Araratova");
@@ -33,7 +32,7 @@ public class AdminTest extends Assert {
     public void getByLogin() throws Exception {   	
         assertNull(Training_center.getInstance().getAdminDAO().getAdminByLogin("noadmin"));
         Admin admin = Training_center.getInstance().getAdminDAO().getAdminByLogin("admin");
-        assertEquals((long) admin.getId(), 1);
+        assertEquals((long) admin.getAdmin_id(), 1);
         assertEquals(admin.getLogin(), "admin"); 
         assertEquals(admin.getPswd_hash(), "f189656226a53e50eae44f80d4befb6e");
         assertEquals(admin.getLast_name(), "Araratova");
@@ -47,7 +46,7 @@ public class AdminTest extends Assert {
         Iterator<Admin> iter = admins.iterator();
         while (iter.hasNext()) {
         	Admin ad = iter.next();
-        	assertEquals(i, ad.getId());
+        	assertEquals(i, ad.getAdmin_id());
         	i = i + 1;
         }
     }

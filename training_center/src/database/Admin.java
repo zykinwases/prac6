@@ -35,10 +35,10 @@ public class Admin implements Serializable{
 		this.first_name = first_name;
 	}
 	
-	public Long getId() {
+	public Long getAdmin_id() {
 		return admin_id;
 	}
-	public void setId(Long id) {
+	public void setAdmin_id(Long id) {
 		this.admin_id = id;
 	}
 	public String getLogin() {

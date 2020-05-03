@@ -18,7 +18,7 @@ public class StdLessHyst implements Serializable{
 
 	public StdLessHyst() {}
 	public StdLessHyst(Student student_id, Course course_id) {
-		this.id = new StdLessHystId(student_id.getId(), course_id.getId());
+		this.id = new StdLessHystId(student_id.getStudent_id(), course_id.getCourse_id());
 		this.student_id = student_id;
 		this.course_id = course_id;
 	}

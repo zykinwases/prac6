@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 import DAO.StdLessDAO;
 import database.StdLess;
-import training_center.HibernateUtil;
+import database.HibernateUtil;
 
 public class StdLessDAOImpl implements StdLessDAO {
 

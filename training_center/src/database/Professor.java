@@ -33,10 +33,10 @@ public class Professor implements Serializable {
 		this.company_id = company_id;
 	}
  	
-	public Long getId() {
+	public Long getProfessor_id() {
 		return professor_id;
 	}
-	public void setId(Long id) {
+	public void setProfessor_id(Long id) {
 		this.professor_id = id;
 	}
 	public String getLogin() {

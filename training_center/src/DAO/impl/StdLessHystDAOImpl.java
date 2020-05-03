@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 import DAO.StdLessHystDAO;
 import database.StdLessHyst;
-import training_center.HibernateUtil;
+import database.HibernateUtil;
 
 public class StdLessHystDAOImpl implements StdLessHystDAO {
 	public void addStdLessHyst(StdLessHyst StdLessHyst) throws SQLException {

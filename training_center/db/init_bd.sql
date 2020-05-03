@@ -58,6 +58,10 @@ CREATE TABLE IF NOT EXISTS stdLessHyst (
 	PRIMARY KEY (student_id, course_id)
 );
 
-CREATE RULE colHys AS ON DELETE 
+CREATE RULE addHys AS ON DELETE 
 TO stdLess
 DO (INSERT INTO stdLessHyst SELECT OLD.* ON CONFLICT DO NOTHING);
+
+CREATE RULE remHys AS ON INSERT 
+TO stdLess
+DO (DELETE FROM stdLessHyst WHERE ((NEW.student_id = student_id) AND (NEW.course_id = course_id)));

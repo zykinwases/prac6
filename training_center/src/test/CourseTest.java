@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import database.Course;
-import training_center.Training_center;
+import database.Training_center;
 
 public class CourseTest extends Assert {
 	private String names[] = {"Basics of banking", "Mathematical statistics in banking", "not going here"};

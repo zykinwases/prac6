@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import org.hibernate.Session;
 
-import training_center.HibernateUtil;
+import database.HibernateUtil;
 import DAO.AdminDAO;
 import database.Admin;
 

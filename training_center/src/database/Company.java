@@ -23,10 +23,10 @@ public class Company implements Serializable{
 		this.address = address;
 	}
 	
-	public Long getId() {
+	public Long getCompany_id() {
 		return company_id;
 	}
-	public void setId(Long id) {
+	public void setCompany_id(Long id) {
 		this.company_id = id;
 	}
 	public String getName() {

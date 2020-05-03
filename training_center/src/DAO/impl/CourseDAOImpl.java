@@ -10,7 +10,7 @@ import org.hibernate.Session;
 import DAO.CourseDAO;
 import database.Course;
 import database.Professor;
-import training_center.HibernateUtil;
+import database.HibernateUtil;
 
 public class CourseDAOImpl implements CourseDAO {
 

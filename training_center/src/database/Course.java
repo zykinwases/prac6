@@ -29,10 +29,10 @@ public class Course implements Serializable {
 		this.professor_id = professor_id;
 	}
 	
-	public Long getId() {
+	public Long getCourse_id() {
 		return course_id;
 	}
-	public void setId(Long id) {
+	public void setCourse_id(Long id) {
 		this.course_id = id;
 	}
 	public String getName() {

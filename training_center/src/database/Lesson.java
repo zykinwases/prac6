@@ -25,10 +25,10 @@ public class Lesson implements Serializable{
 		this.time = time;
 	}
 	
-	public Long getId() {
+	public Long getLesson_id() {
 		return lesson_id;
 	}
-	public void setId(Long id) {
+	public void setLesson_id(Long id) {
 		this.lesson_id = id;
 	}
 	public Course getCourse_id() {

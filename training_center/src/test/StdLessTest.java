@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import database.StdLess;
 import database.StdLessHyst;
-import training_center.Training_center;
+import database.Training_center;
 
 public class StdLessTest extends Assert {
 	private long ids[] = {4, 1, 3, 0};
@@ -20,7 +20,7 @@ public class StdLessTest extends Assert {
 		Iterator<StdLess> iter = courses.iterator();
 		while (iter.hasNext()) {
 			StdLess c = iter.next();
-			assertEquals((long) c.getCourse_id().getId(), ids[i]);
+			assertEquals((long) c.getCourse_id().getCourse_id(), ids[i]);
 			i = i + 1;
 		}
 	}
@@ -33,7 +33,7 @@ public class StdLessTest extends Assert {
 		Collection<StdLessHyst> h = Training_center.getInstance().getStdLessHystDAO().getStudentsByCourse((long) 3);
 		Iterator<StdLessHyst> iter = h.iterator();
 		StdLessHyst s = iter.next();
-		assertEquals((long) s.getStudent_id().getId(), 5);
+		assertEquals((long) s.getStudent_id().getStudent_id(), 5);
 		assertFalse(iter.hasNext());
 	}
 }

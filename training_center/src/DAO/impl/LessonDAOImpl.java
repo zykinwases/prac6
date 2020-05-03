@@ -13,7 +13,7 @@ import org.hibernate.Session;
 import DAO.LessonDAO;
 import database.Course;
 import database.Lesson;
-import training_center.HibernateUtil;
+import database.HibernateUtil;
 
 public class LessonDAOImpl implements LessonDAO {
 
@@ -74,7 +74,8 @@ public class LessonDAOImpl implements LessonDAO {
 		List<Lesson> lessons = new ArrayList<Lesson>();
 		session = HibernateUtil.getSessionFactory().openSession();
 		TypedQuery<Lesson> query = session.createQuery(
-				"SELECT e FROM Lesson e ");
+				"SELECT e FROM Lesson e " +
+				"ORDER BY e.time");
 		lessons = query.getResultList();
 		if (session != null && session.isOpen()) {
 			session.close();
@@ -90,7 +91,8 @@ public class LessonDAOImpl implements LessonDAO {
 		session.beginTransaction();
 		TypedQuery<Lesson> query = session.createQuery(
 				"SELECT e FROM Lesson e " +
-				"WHERE e.time BETWEEN :from AND :to");
+				"WHERE e.time BETWEEN :from AND :to " +
+				"ORDER BY e.time");
 		query.setParameter("from", from, TemporalType.TIMESTAMP);
 		query.setParameter("to", to, TemporalType.TIMESTAMP);
 		lessons = query.getResultList();

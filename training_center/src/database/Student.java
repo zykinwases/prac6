@@ -31,10 +31,10 @@ public class Student implements Serializable{
 		this.mobile = mobile;
 	}
 	
-	public Long getId() {
+	public Long getStudent_id() {
 		return student_id;
 	}
-	public void setId(Long id) {
+	public void setStudent_id(Long id) {
 		this.student_id = id;
 	}
 	public String getLogin() {

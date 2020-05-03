@@ -1,21 +1,21 @@
-<?xml version = "1.0"?>
-
+<?xml version = "1.0" encoding = "utf-8"?>
 <project basedir = "." default = "build" name = "build">
-
-    <property file = "../ant/main.properties"/>
+    <property file = "../main.properties"/>
 
     <path id = "classpath.master">
         <fileset dir = "${lib.dir}">
             <include name = "*.jar"/>
-        	<include name = "envers/*.jar"/>
-        	<include name = "required/*.jar"/>
         </fileset>
+
         <pathelement path = "${build.dir}"/>
     </path>
 
     <target name = "build">
         <mkdir dir = "${build.dir}"/>
-        <copy file="../src/training_center/resources/hibernate.cfg.xml" todir="${build.dir}"/>
+        <copy file="src/hibernate.cfg.xml" todir="${build.dir}"/>
+        <!-- <copy file = "${test.dir}/testng.xml" todir = "${build.dir}/test"/>
+        <copy file = "${src.dir}/selenium/testng.xml" todir = "${build.dir}/selenium"/> -->
+
         <javac includeantruntime = "false"
                destdir = "${build.dir}"
                source = "${jdk.version}"
@@ -24,5 +24,4 @@
             <classpath refid = "classpath.master"/>
         </javac>
     </target>
-
 </project>

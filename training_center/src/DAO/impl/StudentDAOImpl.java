@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 import DAO.StudentDAO;
 import database.Student;
-import training_center.HibernateUtil;
+import database.HibernateUtil;
 
 public class StudentDAOImpl implements StudentDAO {
 
@@ -73,7 +73,7 @@ public class StudentDAOImpl implements StudentDAO {
 		TypedQuery<Student> query = session.createQuery(
 				"SELECT e FROM Student e " +
 				"WHERE e.login = :login")
-				.setParameter("id", login);
+				.setParameter("login", login);
 		if (!query.getResultList().isEmpty()) {
 			student = query.getSingleResult();
 		}
