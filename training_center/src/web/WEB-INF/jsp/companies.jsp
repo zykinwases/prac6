@@ -9,11 +9,11 @@
 	<jsp:include page="menu.jsp"/>
 	<c:set var="role" value="${user.role}"/>
 	<c:if test="${role != 'admin'}">
-		<font color="red">You are not allowed to be here</font>
+		<font color="red"><h3 id="errorMessage">You are not allowed to be here</h3></font>
 	</c:if>
 	<c:if test="${role == 'admin'}">
 		<h1>Companies</h1>
-		<a href="/companies/add">Add new company</a>
+		<a href="/companies/add" id="addCompany">Add new company</a>
 		<br>
 		<table id="Companies">
 			<tr> 
@@ -32,8 +32,8 @@
 					</td>
 					<td>${company.address}</td>
 					<td>
-						<a href="../company/${company.company_id}/edit">edit</a>
-						<a href="../company/${company.company_id}/delete">delete</a>
+						<a href="../company/${company.company_id}/edit" id="editCompany${company.company_id}">edit</a>
+						<a href="../company/${company.company_id}/delete" id="deleteCompany${company.company_id}">delete</a>
 					</td>
 				</tr>
 			</c:forEach>

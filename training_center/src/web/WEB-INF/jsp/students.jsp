@@ -8,10 +8,10 @@
 <body>
 	<jsp:include page="menu.jsp"/>
 	<c:set var="role" value="${user.role}"/>
-	<c:if test="${role != 'admin'}">You are not allowed to be here</c:if>
+	<c:if test="${role != 'admin'}"><h3 id="errorMessage">You are not allowed to be here</h3></c:if>
 	<c:if test="${role == 'admin'}">
 		<h1>Students</h1>
-		<a href="/students/add">Add new student</a>
+		<a href="/students/add" id="addStudent">Add new student</a>
 		<br>
 		<table id="Students">
 			<tr> 
@@ -30,14 +30,14 @@
 			<c:forEach items="${studentList}" var="student">
 				<tr>
 					<td>
-						<a href="../student/${student.student_id}">${student.login}</a>
+						<a href="../student/${student.student_id}" id="loginStudent${student.student_id}">${student.login}</a>
 					</td>
 					<td>${student.first_name}</td>
 					<td>${student.last_name}</td>
 					<td>${student.mobile}</td>
 					<td>
-						<a href="../student/${student.student_id}/edit">edit</a>
-						<a href="../student/${student.student_id}/delete">delete</a>
+						<a href="../student/${student.student_id}/edit" id="editStudent${student.student_id}">edit</a>
+						<a href="../student/${student.student_id}/delete" id="deleteStudent${student.student_id}">delete</a>
 					</td>
 				</tr>
 			</c:forEach>

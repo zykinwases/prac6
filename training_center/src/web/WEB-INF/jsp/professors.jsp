@@ -8,10 +8,10 @@
 <body>
 	<jsp:include page="menu.jsp"/>
 	<c:set var="role" value="${user.role}"/>
-	<c:if test="${role != 'admin'}">You are not allowed to be here</c:if>
+	<c:if test="${role != 'admin'}"><h3 id="errorMessage">You are not allowed to be here</h3></c:if>
 	<c:if test="${role == 'admin'}">
 		<h1>Professors</h1>
-		<a href="/professors/add">Add new professor</a>
+		<a href="/professors/add" id="addProfessor">Add new professor</a>
 		<br>
 		<table id="Professors">
 			<tr> 
@@ -30,14 +30,14 @@
 			<c:forEach items="${profList}" var="prof">
 				<tr>
 					<td>
-						<a href="../professor/${prof.professor_id}">${prof.login}</a>
+						<a href="../professor/${prof.professor_id}" id="loginProfessor${prof.professor_id}">${prof.login}</a>
 					</td>
 					<td>${prof.first_name}</td>
 					<td>${prof.last_name}</td>
 					<td><a href="../company/${prof.company_id.company_id}">${prof.company_id.name}</td>
 					<td>
-						<a href="../professor/${prof.professor_id}/edit">edit</a>
-						<a href="../professor/${prof.professor_id}/delete">delete</a>
+						<a href="../professor/${prof.professor_id}/edit" id="editProfessor${prof.professor_id}">edit</a>
+						<a href="../professor/${prof.professor_id}/delete" id="deleteProfessor${prof.professor_id}">delete</a>
 					</td>
 				</tr>
 			</c:forEach>

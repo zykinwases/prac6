@@ -9,7 +9,7 @@
 <body>
 	<jsp:include page="menu.jsp"/>
 	<c:set var="role" value="${user.role}"/>
-	<c:if test="${role != 'admin'}">You are not allowed to be here</c:if>
+	<c:if test="${role != 'admin'}"><h3 id="errorMessage">You are not allowed to be here</h3></c:if>
 	<c:if test="${role == 'admin'}">
 		<form:form modelAttribute = "courseForm" method="POST">
 			<label for="name">Name</label>
@@ -28,7 +28,7 @@
 					</c:forEach>
 				</form:select>
 		<br>
-		<input type="submit" value=Add>
+		<input type="submit" value=Add id="add">
 	</form:form>
 	</c:if>
 </body>

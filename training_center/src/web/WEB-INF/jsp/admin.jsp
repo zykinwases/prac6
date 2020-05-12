@@ -7,7 +7,7 @@
 </head>
 <body>
 	<jsp:include page="menu.jsp"/>
-	<font color="red">${errorMessage}</font>
+	<font color="red"><h3 id="errorMessage">${errorMessage}</h3></font>
 	<h2>Information about administrator</h2>
 	<label>Last name: </label>
 		${admin.last_name}

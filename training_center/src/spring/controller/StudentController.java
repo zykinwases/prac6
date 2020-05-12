@@ -28,12 +28,13 @@ public class StudentController {
 	private UserInfo user;
 	
 	@RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
-	public String getStudent(ModelMap map, @PathVariable("id") int id) {
+	public String getStudent(ModelMap map, @PathVariable("id") int id, @RequestParam(value="errorMessage", required=false) String errorMessage) {
 		if ((user == null) || (user.getId() == 0)) {
 			map.addAttribute("errorMessage", "Login required");
 			return "redirect:/";
 		}
 		try {
+			map.addAttribute("errorMessage", errorMessage);
 			map.addAttribute("user", user);
 			map.addAttribute("student", tc.getStudentDAO().getStudentById((long) id));
 			
@@ -83,7 +84,7 @@ public class StudentController {
 		}
 		if (user.getRole() != "admin") {
 			map.addAttribute("errorMessage", "You are not allowed to do this");
-			return "redirect:/student/" + id;
+			return "redirect:/" + user.getRole() + "/" + user.getId();
 		}
 		try {
 			tc.getStudentDAO().deleteStudent(tc.getStudentDAO().getStudentById((long) id));
@@ -101,7 +102,7 @@ public class StudentController {
 		}
 		if (user.getRole() != "admin") {
 			map.addAttribute("errorMessage", "You are not allowed to do this");
-			return "redirect:/admin/" + id;
+			return "redirect:/" + user.getRole() + "/" + user.getId();
 		}
 		try {
 			map.addAttribute("user", user);

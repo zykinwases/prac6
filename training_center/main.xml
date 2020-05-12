@@ -17,6 +17,7 @@
 
   <target name = "clean">
     <delete dir="out"/>
+  	<delete dir="bin"/>
   </target>
 
   <target name = "build-war">
@@ -48,10 +49,6 @@
       <arg value = "undeploy"/>
       <arg value = "${war.name}"/>
     </exec>
-  </target>
-
-  <target name = "run-system-tests" >
-    <ant antfile = "${selenium.dir}/build.xml"/>
   </target>
 
   <target name = "all" depends = "stop-server, clean, initdb, build, build-war, start-server, deploy"/>

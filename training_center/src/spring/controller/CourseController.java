@@ -69,7 +69,7 @@ public class CourseController {
 		}
 		if (user.getRole() != "admin") {
 			map.addAttribute("errorMessage", "You are not allowed to do this");
-			return "redirect:/course/" + id;
+			return "redirect:/" + user.getRole() + "/" + user.getId();
 		}
 		try {
 			tc.getCourseDAO().deleteCourse(tc.getCourseDAO().getCourseById((long) id));
@@ -87,7 +87,7 @@ public class CourseController {
 		}
 		if (user.getRole() != "admin") {
 			map.addAttribute("errorMessage", "You are not allowed to do this");
-			return "redirect:/course/" + id;
+			return "redirect:/" + user.getRole() + "/" + user.getId();
 		}
 		try {
 			map.addAttribute("user", user);

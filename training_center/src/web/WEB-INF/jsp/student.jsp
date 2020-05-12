@@ -8,7 +8,7 @@
 <body>
 	<jsp:include page="menu.jsp"/>
 	<c:set var="role" value="${user.role}"/>
-	<font color="red">${errorMessage}</font>
+	<font color="red" id="errorMessage">${errorMessage}</font>
 	<h2>Information about student</h2>
 	
 	<label>Last name: </label>
@@ -23,11 +23,11 @@
 	<table id="Students">
 		<c:forEach items="${coursesList}" var="courses">
 			<tr>
-  	 			<td><a href="../course/${courses.course_id}">
+  	 			<td><a href="../course/${courses.course_id}" id="course${courses.course_id}">
    				    ${courses.name}
     			</a></td>
     			<c:if test="${role == 'admin'}">
-    				<td><a href="/student/${student.student_id}/drop?course=${courses.course_id}">
+    				<td><a href="/student/${student.student_id}/drop?course=${courses.course_id}" id="drop${courses.course_id}">
     					drop
     				</a></td>
     			</c:if>
@@ -37,9 +37,9 @@
 
 	<br>
 	<br><a href="javascript:sh()">History</a><br />
-	<div id="hystory" style="padding-top:15px;" hidden="">
+	<div id="history" style="padding-top:15px;" hidden="">
 		<c:forEach items="${oldList}" var="courses">
-   			<a href="../course/${courses.course_id}">
+   			<a href="../course/${courses.course_id}" id="history${courses.course_id}">
             	${courses.name}
    			</a>
     	<br>
@@ -50,7 +50,7 @@
 		<br><a href="javascript:sh1()">Sign up</a><br />
 		<div id="sign" style="padding-top:15px;" hidden="">
 			<c:forEach items="${allList}" var="course">
-   				<a href="../student/${student.student_id}/sign?course=${course.course_id}">
+   				<a href="../student/${student.student_id}/sign?course=${course.course_id}" id="sign${course.course_id}">
             		${course.name}
 	   			</a>
     			<br>
@@ -60,7 +60,7 @@
 	
 	<script type="text/javascript">
 		function sh() {
-			obj = document.getElementById("hystory");
+			obj = document.getElementById("history");
 			obj.style.display == "block" ? obj.style.display = "none" : obj.style.display = "block";
 		}
 	</script>

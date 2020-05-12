@@ -10,7 +10,7 @@
 	<c:set var="role" value="${user.role}"/>
 	<h1>Courses</h1>
 	<c:if test="${role == 'admin'}">
-		<a href="/courses/add">Add new course</a>
+		<a href="/courses/add" id="addCourse">Add new course</a>
 		<br>
 	</c:if>
 	<table id="Courses">
@@ -41,8 +41,8 @@
 				</td>
 				<c:if test="${role == 'admin'}">
 					<td>
-						<a href="../course/${course.course_id}/edit">edit</a>
-						<a href="../course/${course.course_id}/delete">delete</a>
+						<a href="../course/${course.course_id}/edit" id="editCourse${course.course_id}">edit</a>
+						<a href="../course/${course.course_id}/delete" id="deleteCourse${course.course_id}">delete</a>
 					</td>
 				</c:if>
 			</tr>

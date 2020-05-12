@@ -44,7 +44,7 @@ public class CompanyController {
 		}
 		if (user.getRole() != "admin") {
 			map.addAttribute("errorMessage", "You are not allowed to do this");
-			return "redirect:/company/" + id;
+			return "redirect:/" + user.getRole() + "/" + user.getId();
 		}
 		try {
 			tc.getCompanyDAO().deleteCompany(tc.getCompanyDAO().getCompanyById((long) id));
@@ -62,7 +62,7 @@ public class CompanyController {
 		}
 		if (user.getRole() != "admin") {
 			map.addAttribute("errorMessage", "You are not allowed to do this");
-			return "redirect:/company/" + id;
+			return "redirect:/" + user.getRole() + "/" + user.getId();
 		}
 		try {
 			map.addAttribute("user", user);

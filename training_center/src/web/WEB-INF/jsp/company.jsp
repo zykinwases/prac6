@@ -7,7 +7,6 @@
 </head>
 <body>
 	<jsp:include page="menu.jsp"/>
-	<font color="red">${errorMessage}</font>
 	<h2>Information about company</h2>
 	
 	<label>Company: </label>
@@ -17,7 +16,7 @@
 	<br><label>Working professors: </label>
 	<c:forEach items="${professorList}" var="professor">
 		<br>
-   		<a href="../professor/${professor.professor_id}">
+   		<a href="../professor/${professor.professor_id}" id="professor${professor.professor_id}">
             ${professor.last_name} ${professor.first_name} 
    		</a>
 	</c:forEach>

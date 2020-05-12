@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import database.Professor;
 import database.Training_center;
@@ -20,12 +21,13 @@ public class ProfessorController {
 	private UserInfo user;
 	
 	@RequestMapping(value = "/professor/{id}", method = RequestMethod.GET)
-	public String getStudent(ModelMap map, @PathVariable("id") int id) {
+	public String getStudent(ModelMap map, @PathVariable("id") int id, @RequestParam(value="errorMessage", required=false) String errorMessage) {
 		if ((user == null) || (user.getId() == 0)) {
 			map.addAttribute("errorMessage", "Login required");
 			return "redirect:/";
 		}
 		try {
+			map.addAttribute("errorMessage", errorMessage);
 			map.addAttribute("user", user);
 			Professor prof = tc.getProfessorDAO().getProfessorById((long) id);
 			map.addAttribute("professor", prof);
@@ -44,7 +46,7 @@ public class ProfessorController {
 		}
 		if (user.getRole() != "admin") {
 			map.addAttribute("errorMessage", "You are not allowed to do this");
-			return "redirect:/professor/" + id;
+			return "redirect:/" + user.getRole() + "/" + user.getId();
 		}
 		try {
 			tc.getProfessorDAO().deleteProfessor(tc.getProfessorDAO().getProfessorById((long) id));
@@ -62,7 +64,7 @@ public class ProfessorController {
 		}
 		if (user.getRole() != "admin") {
 			map.addAttribute("errorMessage", "You are not allowed to do this");
-			return "redirect:/professor/" + id;
+			return "redirect:/" + user.getRole() + "/" + user.getId();
 		}
 		try {
 			map.addAttribute("user", user);

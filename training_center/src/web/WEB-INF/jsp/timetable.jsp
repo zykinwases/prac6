@@ -8,11 +8,10 @@
 <body>
 	<jsp:include page="menu.jsp"/>
 	<c:set var="role" value="${user.role}"/>
-	<h1>Timetable</h1>
-${t}	
+	<h1>Timetable</h1>	
 <br>
 	<c:if test="${role == 'admin'}">
-		<a href="/timetable/add">Add new lesson</a>
+		<a href="/timetable/add" id="addLesson">Add new lesson</a>
 	</c:if>
 	<br> Show timetable for: 
 		<a href="/timetable?time=today">Today</a>
@@ -28,10 +27,10 @@ ${t}
 		<c:forEach items="${lessonList}" var="lesson">
 			<tr>
 				<td>${lesson.course_id.name}</td>
-				<td>${lesson.time}</td>
+				<td><div id="lessonTime${lesson.lesson_id}">${lesson.time}</div></td>
 				<c:if test="${role == 'admin'}">
 					<td>
-						<a href="/timetable/delete?lesson=${lesson.lesson_id}">delete</a>
+						<a href="/timetable/delete?lesson=${lesson.lesson_id}" id="deleteLesson${lesson.lesson_id}">delete</a>
 					</td>
 				</c:if>
 			</tr>
