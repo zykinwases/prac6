@@ -32,6 +32,7 @@ public class CompanyController {
 			map.addAttribute("professorList", tc.getProfessorDAO().getProfessorsByCompany(c));
 			return "company";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -50,6 +51,7 @@ public class CompanyController {
 			tc.getCompanyDAO().deleteCompany(tc.getCompanyDAO().getCompanyById((long) id));
 			return "redirect:/companies";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -70,6 +72,7 @@ public class CompanyController {
 			map.addAttribute("companyUpdate", new CompanyForm());
 			return "company_update";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -83,6 +86,7 @@ public class CompanyController {
 			tc.getCompanyDAO().updateCompany(company);
 			return "redirect:/company/" + id;
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -94,6 +98,7 @@ public class CompanyController {
 			map.addAttribute("companyList", tc.getCompanyDAO().getAllCompanies());
 			return "companies";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -113,6 +118,7 @@ public class CompanyController {
 			map.addAttribute("companyForm", new CompanyForm());
 			return "company_add";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -124,6 +130,7 @@ public class CompanyController {
 			tc.getCompanyDAO().addCompany(company);
 			return "redirect:/companies";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}

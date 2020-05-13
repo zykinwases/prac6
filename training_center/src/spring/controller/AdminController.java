@@ -32,6 +32,7 @@ public class AdminController {
 			map.addAttribute("admin", tc.getAdminDAO().getAdminById((long) id));
 			return "admin";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -50,6 +51,7 @@ public class AdminController {
 			tc.getAdminDAO().deleteAdmin(tc.getAdminDAO().getAdminById((long) id));
 			return "redirect:/admins";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -70,6 +72,7 @@ public class AdminController {
 			map.addAttribute("adminForm", new AdminForm());
 			return "admin_update";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -83,6 +86,7 @@ public class AdminController {
 			tc.getAdminDAO().updateAdmin(admin);
 			return "redirect:/admin/" + id;
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -94,6 +98,7 @@ public class AdminController {
 			map.addAttribute("adminList", tc.getAdminDAO().getAllAdmins());
 			return "admins";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -113,6 +118,7 @@ public class AdminController {
 			map.addAttribute("adminForm", new AdminForm());
 			return "admin_add";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -124,6 +130,7 @@ public class AdminController {
 			tc.getAdminDAO().addAdmin(admin);
 			return "redirect:/admins";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}

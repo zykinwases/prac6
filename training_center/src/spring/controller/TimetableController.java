@@ -73,6 +73,7 @@ public class TimetableController {
         	map.addAttribute("lessonList", lessons);
             return "timetable";
         } catch (Exception e) {
+        	map.addAttribute("errorMessage", e.toString());
             return "error";
         }
     }
@@ -92,6 +93,7 @@ public class TimetableController {
     		tc.getLessonDAO().deleteLesson(lesson);
     		return "redirect:/timetable";
     	} catch (Exception e) {
+    		map.addAttribute("errorMessage", e.toString());
     		return "error";
     	}
     }
@@ -112,6 +114,7 @@ public class TimetableController {
     		map.addAttribute("courseList", tc.getCourseDAO().getAllCourses());
     		return "timetable_add";
     	} catch (Exception e) {
+    		map.addAttribute("errorMessage", e.toString());
     		return "error";
     	}
     }
@@ -123,6 +126,7 @@ public class TimetableController {
     		tc.getLessonDAO().addLesson(lesson);
     		return "redirect:/timetable";
     	} catch (Exception e) {
+    		map.addAttribute("errorMessage", e.toString());
     		return "error";
     	}
     }

@@ -537,6 +537,61 @@
       ],
       "value": ""
     }, {
+      "id": "525aaf7e-8e75-43e7-aa8a-245e0df663d3",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=login", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='authForm']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "a"
+    }, {
+      "id": "febb767a-708a-4b01-b588-51108b2664fd",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=pswd_hash", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='authForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "a"
+    }, {
+      "id": "8fa49244-7a91-4d6b-a105-e50551638eac",
+      "comment": "",
+      "command": "select",
+      "target": "id=selection",
+      "targets": [],
+      "value": "label=Administrator"
+    }, {
+      "id": "d8fb4896-881b-462f-ae11-0cc36fe04744",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [
+        ["id=login", "id"],
+        ["css=#login", "css:finder"],
+        ["xpath=//input[@id='login']", "xpath:attributes"],
+        ["xpath=//form[@id='authForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b0b34390-9610-4b1a-8b4a-1f720d63ad1f",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=errorMessage",
+      "targets": [],
+      "value": "Wrong username or password"
+    }, {
       "id": "ad41efcd-9bfb-4144-b67d-adf251d0d821",
       "comment": "",
       "command": "close",

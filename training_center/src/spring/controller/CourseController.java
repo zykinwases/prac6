@@ -57,6 +57,7 @@ public class CourseController {
 			map.addAttribute("oldList", oldStudents);
 			return "course";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -75,6 +76,7 @@ public class CourseController {
 			tc.getCourseDAO().deleteCourse(tc.getCourseDAO().getCourseById((long) id));
 			return "redirect:/courses";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -96,6 +98,7 @@ public class CourseController {
 			map.addAttribute("courseForm", new CourseForm());
 			return "course_update";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -111,6 +114,7 @@ public class CourseController {
 			tc.getCourseDAO().updateCourse(course);
 			return "redirect:/course/" + id;
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -122,6 +126,7 @@ public class CourseController {
 			map.addAttribute("courseList", tc.getCourseDAO().getAllCourses());
 			return "courses";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -142,6 +147,7 @@ public class CourseController {
 			map.addAttribute("courseForm", new CourseForm());
 			return "course_add";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -154,6 +160,7 @@ public class CourseController {
 			tc.getCourseDAO().addCourse(course);
 			return "redirect:/courses";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}

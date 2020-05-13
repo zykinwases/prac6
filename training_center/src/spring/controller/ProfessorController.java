@@ -34,6 +34,7 @@ public class ProfessorController {
 			map.addAttribute("courseList", tc.getCourseDAO().getCoursesByProf(prof));
 			return "professor";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -52,6 +53,7 @@ public class ProfessorController {
 			tc.getProfessorDAO().deleteProfessor(tc.getProfessorDAO().getProfessorById((long) id));
 			return "redirect:/professors";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -73,6 +75,7 @@ public class ProfessorController {
 			map.addAttribute("professorForm", new ProfessorForm());
 			return "professor_update";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -87,6 +90,7 @@ public class ProfessorController {
 			tc.getProfessorDAO().updateProfessor(prof);
 			return "redirect:/professor/" + id;
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -98,6 +102,7 @@ public class ProfessorController {
 			map.addAttribute("profList", tc.getProfessorDAO().getAllProfessors());
 			return "professors";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -118,6 +123,7 @@ public class ProfessorController {
 			map.addAttribute("professorForm", new ProfessorForm());
 			return "professor_add";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -130,6 +136,7 @@ public class ProfessorController {
 			tc.getProfessorDAO().addProfessor(professor);
 			return "redirect:/professors";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}

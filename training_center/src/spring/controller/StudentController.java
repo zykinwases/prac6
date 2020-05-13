@@ -72,6 +72,7 @@ public class StudentController {
 			map.addAttribute("allList", rest);
 			return "student";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -90,6 +91,7 @@ public class StudentController {
 			tc.getStudentDAO().deleteStudent(tc.getStudentDAO().getStudentById((long) id));
 			return "redirect:/students";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -110,6 +112,7 @@ public class StudentController {
 			map.addAttribute("studentForm", new StudentForm());
 			return "student_update";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -123,6 +126,7 @@ public class StudentController {
 			tc.getStudentDAO().updateStudent(student);
 			return "redirect:/student/" + id;
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -142,6 +146,7 @@ public class StudentController {
 			tc.getStdLessDAO().addStdLess(std);
 			return "redirect:/student/" + id;
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -161,6 +166,7 @@ public class StudentController {
 			tc.getStdLessDAO().deleteStdLess(std);
 			return "redirect:/student/" + id;
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -172,6 +178,7 @@ public class StudentController {
 			map.addAttribute("studentList", tc.getStudentDAO().getAllStudents());
 			return "students";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -191,6 +198,7 @@ public class StudentController {
 			map.addAttribute("studentForm", new StudentForm());
 			return "student_add";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}
@@ -203,6 +211,7 @@ public class StudentController {
 			tc.getStudentDAO().addStudent(student);
 			return "redirect:/stidents";
 		} catch (Exception e) {
+			map.addAttribute("errorMessage", e.toString());
 			return "error";
 		}
 	}

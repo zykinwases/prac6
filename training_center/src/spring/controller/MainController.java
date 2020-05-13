@@ -28,6 +28,7 @@ public class MainController {
         	map.addAttribute("authForm", new AuthForm());
             return "auth";
         } catch (Exception e) {
+        	map.addAttribute("errorMessage", e.toString());
             return "error";
         }
     }
@@ -91,6 +92,7 @@ public class MainController {
     		map.addAttribute("errorMessage", "Wrong username or password");
     		return "redirect:/";
     	} catch (Exception e) {
+    		map.addAttribute("errorMessage", e.toString());
     		return "error";
     	}
     }
